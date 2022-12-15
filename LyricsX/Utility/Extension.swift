@@ -200,12 +200,12 @@ private extension NSPredicate {
     }
 }
 
-extension Lyrics {
-    
-    func filtrate() {
-        filtrate(isIncluded: NSPredicate.lyricsPredicate)
-    }
-}
+//extension Lyrics {
+//    
+//    func filtrate() {
+//        filtrate(isIncluded: NSPredicate.lyricsPredicate)
+//    }
+//}
 
 extension Lyrics {
     

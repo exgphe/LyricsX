@@ -50,17 +50,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/1024jp/GzipSwift",
       "state" : {
-        "revision" : "ba0b6cb51cc6202f896e469b87d2889a46b10d1b",
-        "version" : "5.1.1"
+        "revision" : "7a7f17761c76a932662ab77028a4329f67d645a4",
+        "version" : "5.2.0"
       }
     },
     {
       "identity" : "lyricskit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ddddxxx/LyricsKit",
+      "location" : "https://github.com/exgphe/LyricsKit.git",
       "state" : {
-        "revision" : "5506ee497ca689ed1686655ebb11e8ee29cc24cb",
-        "version" : "0.11.0"
+        "branch" : "master",
+        "revision" : "55383cb6bac2619a698cf91374e7b2816015f3bd"
       }
     },
     {

@@ -80,15 +80,18 @@ class AppController: NSObject {
         }
         let playbackState = MusicPlayers.Selected.shared.playbackState
         let playbackTime = playbackState.time
-        let (index, next) = lyrics[playbackTime + lyrics.adjustedTimeDelay]
+        let index = lyrics.lineIndex(at: playbackTime + lyrics.adjustedTimeDelay)
         if currentLineIndex != index {
             currentLineIndex = index
         }
-        if let next = next, playbackState.isPlaying {
-            let dt = lyrics.lines[next].position - playbackTime - lyrics.adjustedTimeDelay
-            let q = DispatchQueue.lyricsDisplay.cx
-            currentLineCheckSchedule = q.schedule(after: q.now.advanced(by: .seconds(dt)), interval: .seconds(42), tolerance: .milliseconds(20)) { [unowned self] in
-                self.scheduleCurrentLineCheck()
+        if let index = index {
+            let next = index + 1
+            if next <= lyrics.endIndex, playbackState.isPlaying {
+                let dt = lyrics[next].position - playbackTime - lyrics.adjustedTimeDelay
+                let q = DispatchQueue.lyricsDisplay.cx
+                currentLineCheckSchedule = q.schedule(after: q.now.advanced(by: .seconds(dt)), interval: .seconds(42), tolerance: .milliseconds(20)) { [unowned self] in
+                    self.scheduleCurrentLineCheck()
+                }
             }
         }
     }
@@ -100,7 +103,7 @@ class AppController: NSObject {
             overwrite || (sbTrack.value(forKey: "lyrics") as! String?)?.isEmpty != false else {
             return
         }
-        let content = currentLyrics.lines.map { line -> String in
+        let content = currentLyrics.map { line -> String in
             var content = line.content
             if let converter = ChineseConverter.shared {
                 content = converter.convert(content)
@@ -177,7 +180,7 @@ class AppController: NSObject {
                 lyrics.metadata.localURL = url
                 lyrics.metadata.title = title
                 lyrics.metadata.artist = artist
-                lyrics.filtrate()
+//                lyrics.filtrate()
                 lyrics.recognizeLanguage()
                 currentLyrics = lyrics
                 if needsSearching {
@@ -217,7 +220,7 @@ class AppController: NSObject {
     
     func lyricsReceived(lyrics: Lyrics) {
         guard let req = searchRequest,
-            lyrics.metadata.request == req,
+            lyrics.metadata.searchRequest == req,
             let track = selectedPlayer.currentTrack else {
             return
         }
@@ -228,7 +231,7 @@ class AppController: NSObject {
             return
         }
         lyrics.associateWithTrack(track)
-        lyrics.filtrate()
+//        lyrics.filtrate()
         lyrics.recognizeLanguage()
         lyrics.metadata.needsPersist = true
         currentLyrics = lyrics
@@ -256,7 +259,7 @@ extension AppController {
         }
         lrc.metadata.title = track.title
         lrc.metadata.artist = track.artist
-        lrc.filtrate()
+//        lrc.filtrate()
         lrc.recognizeLanguage()
         lrc.metadata.needsPersist = true
         currentLyrics = lrc

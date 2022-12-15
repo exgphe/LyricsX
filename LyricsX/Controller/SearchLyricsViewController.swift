@@ -119,10 +119,10 @@ class SearchLyricsViewController: NSViewController, NSTableViewDelegate, NSTable
     // MARK: - LyricsSourceDelegate
     
     func lyricsReceived(lyrics: Lyrics) {
-        guard lyrics.metadata.request == searchRequest else {
+        guard lyrics.metadata.searchRequest == searchRequest else {
             return
         }
-        lyrics.filtrate()
+//        lyrics.filtrate()
         lyrics.recognizeLanguage()
         lyrics.metadata.needsPersist = true
         if let idx = searchResult.firstIndex(where: { lyrics.quality > $0.quality }) {

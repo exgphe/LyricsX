@@ -50,7 +50,7 @@ class TouchBarLyricsItem: NSCustomTouchBarItem {
                 }
                 return
         }
-        let line = lyrics.lines[index]
+        let line = lyrics[index]
         var lyricsContent = line.content
         if let converter = ChineseConverter.shared,
             lyrics.metadata.language?.hasPrefix("zh") == true {

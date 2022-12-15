@@ -61,7 +61,7 @@ class MenuBarLyricsController {
             screenLyrics = ""
             return
         }
-        var newScreenLyrics = lyrics.lines[index].content
+        var newScreenLyrics = lyrics[index].content
         if let converter = ChineseConverter.shared, lyrics.metadata.language?.hasPrefix("zh") == true {
             newScreenLyrics = converter.convert(newScreenLyrics)
         }

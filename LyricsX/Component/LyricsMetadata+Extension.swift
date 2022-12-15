@@ -21,28 +21,28 @@ extension Lyrics.Metadata.Key {
 extension Lyrics.Metadata {
     
     var localURL: URL? {
-        get { return data[.localURL] as? URL }
-        set { data[.localURL] = newValue }
+        get { return self[.localURL] as? URL }
+        set { self[.localURL] = newValue }
     }
     
     var title: String? {
-        get { return data[.title] as? String }
-        set { data[.title] = newValue }
+        get { return self[.title] as? String }
+        set { self[.title] = newValue }
     }
     
     var artist: String? {
-        get { return data[.artist] as? String }
-        set { data[.artist] = newValue }
+        get { return self[.artist] as? String }
+        set { self[.artist] = newValue }
     }
     
     var needsPersist: Bool {
-        get { return data[.needsPersist] as? Bool ?? false }
-        set { data[.needsPersist] = newValue }
+        get { return self[.needsPersist] as? Bool ?? false }
+        set { self[.needsPersist] = newValue }
     }
     
     var language: String? {
-        get { return data[.language] as? String }
-        set { data[.language] = newValue }
+        get { return self[.language] as? String }
+        set { self[.language] = newValue }
     }
     
     var translationLanguages: [String] {

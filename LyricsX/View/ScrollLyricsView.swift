@@ -70,7 +70,7 @@ class ScrollLyricsView: NSScrollView {
         
         var lrcContent = ""
         var newRanges: [(TimeInterval, NSRange)] = []
-        let enabledLrc = lyrics.lines.filter({ $0.enabled && !$0.content.isEmpty })
+        let enabledLrc = lyrics.filter({ !$0.content.isEmpty })
         let languageCode = lyrics.metadata.translationLanguages.first
         
         for line in enabledLrc {

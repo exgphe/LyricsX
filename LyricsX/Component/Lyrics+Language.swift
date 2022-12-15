@@ -29,7 +29,7 @@ extension Lyrics {
     func recognizeLanguage() {
         var lyricsContent = ""
         var translationContent = ""
-        for line in lines {
+        for line in self {
             lyricsContent += line.content
             if let trans = line.attachments.translation() {
                 translationContent += trans
@@ -41,10 +41,10 @@ extension Lyrics {
             guard !metadata.attachmentTags.contains(tag) else {
                 return
             }
-            for idx in lines.indices {
-                if let trans = lines[idx].attachments.translation() {
-                    lines[idx].attachments[.translation()] = nil
-                    lines[idx].attachments[.translation(languageCode: transLan)] = trans
+            for idx in indices {
+                if let trans = self[idx].attachments.translation() {
+                    self[idx].attachments[.translation()] = nil
+                    self[idx].attachments[.translation(languageCode: transLan)] = trans
                 }
             }
             metadata.attachmentTags.insert(tag)
