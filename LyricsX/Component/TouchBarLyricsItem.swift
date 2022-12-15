@@ -8,7 +8,7 @@
 //
 
 import AppKit
-import CXShim
+import Combine
 import LyricsCore
 import OpenCC
 

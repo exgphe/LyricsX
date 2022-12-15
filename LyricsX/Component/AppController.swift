@@ -8,8 +8,7 @@
 //
 
 import AppKit
-import CXShim
-import CXExtensions
+import Combine
 import LyricsService
 import MusicPlayer
 import OpenCC

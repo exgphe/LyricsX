@@ -11,13 +11,13 @@ import Cocoa
 import GenericID
 import MASShortcut
 import MusicPlayer
-import AppCenter
-import AppCenterAnalytics
-import AppCenterCrashes
+//import AppCenter
+//import AppCenterAnalytics
+//import AppCenterCrashes
 
-#if !IS_FOR_MAS
-import Sparkle
-#endif
+//#if !IS_FOR_MAS
+//import Sparkle
+//#endif
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenuDelegate {
@@ -81,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         #if IS_FOR_MAS
         checkForMASReview(force: true)
         #else
-        SUUpdater.shared()?.checkForUpdatesInBackground()
+//        SUUpdater.shared()?.checkForUpdatesInBackground()
         if #available(OSX 10.12.2, *) {
             observeDefaults(key: .touchBarLyricsEnabled, options: [.new, .initial]) { _, change in
                 if change.newValue, TouchBarLyricsController.shared == nil {
@@ -171,7 +171,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation, NSMenu
         #if IS_FOR_MAS
         assert(false, "should not be there")
         #else
-        SUUpdater.shared()?.checkForUpdates(sender)
+//        SUUpdater.shared()?.checkForUpdates(sender)
         #endif
     }
     
